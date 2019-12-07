@@ -43,8 +43,12 @@ $("#form").bootstrapValidator({
     }
   }
 })
+  // 2. 进行登录请求
+  //    通过 ajax 进行登录请求
 
-
+  // 表单校验插件有一个特点, 在表单提交的时候进行校验
+  // 如果校验成功, 继续提交, 需要阻止这次默认的提交, 通过 ajax 进行请求提交
+  // 如果校验失败, 默认会阻止提交
 $('#form').on('success.form.bv',function (e) {
    e.preventDefault()
    $.ajax({
@@ -58,6 +62,10 @@ $('#form').on('success.form.bv',function (e) {
        } else if (info.error === 1000){
         $('#form').data("bootstrapValidator").updateStatus("username", "INVALID", "callback")
        } else {
+          // updateStatus
+          // 参数1: 字段名称
+          // 参数2: 校验状态
+          // 参数3: 校验规则, 可以设置提示文本
         $('#form').data("bootstrapValidator").updateStatus("password", "INVALID", "callback")
 
        }

@@ -1,8 +1,39 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
 .nav-left {
   width: 200px;
-  height: 100px;
+  height: 100%;
   position: fixed;
   background-color: #222D32;
   top: 0;
   left: 0;
+  text-align: center;
+}
+.nav-left .nav-top {
+  height: 50px;
+  line-height: 50px;
+  font-size: 24px;
+  background-color: #367FA9;
+  text-align: center;
+  color: #fff;
+}
+.nav-left .nav-top a {
+  color: #fff;
+}
+.nav-left .user-img img {
+  display: block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 20px auto 10px;
+}
+.nav-left .superperson {
+  color: #fff;
+  font-size: 25px;
 }
