@@ -22,7 +22,7 @@ $('.outbtn').on('click', function () {
   })
 })
 
-$('.category').click(function() {
+$('#category').click(function() {
   $('.child').slideToggle()
 
 })
@@ -36,7 +36,7 @@ var info = {
     { month: '2月', count: 400 },
     { month: '3月', count: 330 },
     { month: '4月', count: 500 },
-    { month: '5月', count: 770 },
+    { month: '5月', count: 500 },
     { month: '6月', count: 900 },
     { month: '7月', count: 100 },
     { month: '8月', count: 200 },
@@ -171,7 +171,7 @@ var lis = document.querySelectorAll('.bar li:not(.category)')
 var category = document.querySelector('.category')
 var cn = ['.user', '.first', '.second']
 
-// console.log(li)
+console.log(lis)
 // var arr = [1,2,3]
 //  arr.splice(1,1)
 // console.log(arr)
@@ -340,6 +340,7 @@ $.ajax({
     pageSize:second_pagesize
   },
   success : function (info) {
-    $('#second-tb').html(template('tpl2',info))
+    console.log(info)
+    $('.second-tb').html(template('tpl2',info))
   }
 })
