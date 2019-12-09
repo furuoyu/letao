@@ -3,7 +3,6 @@
   margin: 0;
   list-style: none;
 }
-
 a{
   text-decoration : none;
 }
@@ -16,7 +15,9 @@ a{
   top:0;
   left: 0;
   text-align: center;
-  .nav-top{
+  z-index: 666;
+  transition: all 1s;
+  .text-top{
     height: 50px;
     line-height: 50px;
     font-size: 24px;
@@ -25,6 +26,7 @@ a{
     color: #fff;
     a {
       color:#fff;
+      text-decoration: none;
     }
   }
   .user-img{
@@ -41,4 +43,67 @@ a{
     color: #fff;
     font-size: 25px;
   }
+  .bar{
+    margin-top: 50px;
+    li{
+      line-height: 40px;
+      a{
+        color: #fff;
+        text-decoration: none;      
+      }
+      .child{
+        display: none;
+        a{
+          display: block;
+        }
+      }
+    }
+  }
+}
+.now{
+  background-color: #1D1F21;
+  border-left: 3px solid #006699;
+}
+.nav-top{
+  height: 50px;
+  width: 100%;
+  line-height: 50px;
+  background-color: #3C8DBC;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-left: 200px;
+  color:#fff;
+  transition: all 1s;
+  a {
+    color:#fff;
+    text-decoration: none;
+    line-height: 50px;
+    font-size: 20px;
+    margin:0 5px;
+  }
+}
+.now{
+  left: -200px;
+}
+.red{
+  color: red;
+}
+.move{
+  padding-left: 0;
+}
+.main,.user,.first,.second{
+  padding-left: 200px;
+  padding-top:50px;
+  display: none;
+  .echars-1,
+  .echars-2{
+    width: 50%;
+    height: 500px;
+    float: left;
+  }
+}
+
+.show{
+  display: block !important; 
 }

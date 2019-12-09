@@ -14,8 +14,10 @@ a {
   top: 0;
   left: 0;
   text-align: center;
+  z-index: 666;
+  transition: all 1s;
 }
-.nav-left .nav-top {
+.nav-left .text-top {
   height: 50px;
   line-height: 50px;
   font-size: 24px;
@@ -23,8 +25,9 @@ a {
   text-align: center;
   color: #fff;
 }
-.nav-left .nav-top a {
+.nav-left .text-top a {
   color: #fff;
+  text-decoration: none;
 }
 .nav-left .user-img img {
   display: block;
@@ -36,4 +39,75 @@ a {
 .nav-left .superperson {
   color: #fff;
   font-size: 25px;
+}
+.nav-left .bar {
+  margin-top: 50px;
+}
+.nav-left .bar li {
+  line-height: 40px;
+}
+.nav-left .bar li a {
+  color: #fff;
+  text-decoration: none;
+}
+.nav-left .bar li .child {
+  display: none;
+}
+.nav-left .bar li .child a {
+  display: block;
+}
+.now {
+  background-color: #1D1F21;
+  border-left: 3px solid #006699;
+}
+.nav-top {
+  height: 50px;
+  width: 100%;
+  line-height: 50px;
+  background-color: #3C8DBC;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-left: 200px;
+  color: #fff;
+  transition: all 1s;
+}
+.nav-top a {
+  color: #fff;
+  text-decoration: none;
+  line-height: 50px;
+  font-size: 20px;
+  margin: 0 5px;
+}
+.now {
+  left: -200px;
+}
+.red {
+  color: red;
+}
+.move {
+  padding-left: 0;
+}
+.main,
+.user,
+.first,
+.second {
+  padding-left: 200px;
+  padding-top: 50px;
+  display: none;
+}
+.main .echars-1,
+.user .echars-1,
+.first .echars-1,
+.second .echars-1,
+.main .echars-2,
+.user .echars-2,
+.first .echars-2,
+.second .echars-2 {
+  width: 50%;
+  height: 500px;
+  float: left;
+}
+.show {
+  display: block !important;
 }
