@@ -22,12 +22,20 @@ $('.outbtn').on('click', function () {
   })
 })
 
-$('#category').click(function() {
+$('#category').click(function () {
   $('.child').slideToggle()
 
 })
 
- 
+//面包屑导航点击事件
+$('.system').click(function () {
+  $('.main,.user,.first,.second').removeClass('show')
+  $('.main').addClass('show')
+})
+$('.user-system').click(function () {
+  $('.main,.user,.first,.second').removeClass('show')
+  $('.user').addClass('show')
+})
 //柱性图
 var info = {
   title: '2019年注册人数',
@@ -171,7 +179,7 @@ var lis = document.querySelectorAll('.bar li:not(.category)')
 var category = document.querySelector('.category')
 var cn = ['.user', '.first', '.second']
 
-console.log(lis)
+//console.log(lis)
 // var arr = [1,2,3]
 //  arr.splice(1,1)
 // console.log(arr)
@@ -223,9 +231,9 @@ function render() {
         // 当前页
         currentPage: page,
         // 总页数
-        totalPages: Math.ceil(info.total/info.size),
+        totalPages: Math.ceil(info.total / info.size),
         // 当分页的按钮被点击的时候，会触发的事件, 关注第四个参数： 第几页
-        onPageClicked: function (a,b,c,d) {
+        onPageClicked: function (a, b, c, d) {
           page = arguments[3]
           render()
         }
@@ -235,21 +243,21 @@ function render() {
 }
 render()
 
-$('.user-tb').on('click','.btn-user',function(){
+$('.user-tb').on('click', '.btn-user', function () {
   $('.updatemodal').modal('show')
   window.id = $(this).data('id')
-  window.isDelete =  $(this).hasClass('btn-success') ? 1: 0
+  window.isDelete = $(this).hasClass('btn-success') ? 1 : 0
 })
-$('.btn-update').click(function() {  
+$('.btn-update').click(function () {
   $.ajax({
-    type:'post',
-    url:'/user/updateUser',
-    data:{
-      id:id,
-      isDelete:isDelete
+    type: 'post',
+    url: '/user/updateUser',
+    data: {
+      id: id,
+      isDelete: isDelete
     },
-    success : function (info) {
-      if(info.success){
+    success: function (info) {
+      if (info.success) {
         render()
         $('.updatemodal').modal('hide')
       }
@@ -262,22 +270,22 @@ var first_page = 1
 var first_pagesize = 3
 function first() {
   $.ajax({
-    type:'get',
-    url:'/category/queryTopCategoryPaging',
-    data:{
-      page : first_page,
-      pageSize : first_pagesize
+    type: 'get',
+    url: '/category/queryTopCategoryPaging',
+    data: {
+      page: first_page,
+      pageSize: first_pagesize
     },
-    success : function (info) {
-       $('.first-tb').html(template('tpl1',info))
-       $('#first-page').bootstrapPaginator({
+    success: function (info) {
+      $('.first-tb').html(template('tpl1', info))
+      $('#first-page').bootstrapPaginator({
         bootstrapMajorVersion: 3,
         // 当前页
         currentPage: first_page,
         // 总页数
-        totalPages: Math.ceil(info.total/info.size),
+        totalPages: Math.ceil(info.total / info.size),
         // 当按钮被点击的时候触发
-        onPageClicked: function(a,b,c,d) {
+        onPageClicked: function (a, b, c, d) {
           first_page = d
           // 重新渲染
           first()
@@ -288,11 +296,11 @@ function first() {
 }
 first()
 
-$('.btn-add').click(function() {
+$('.btn-add').click(function () {
   $('.addmodal').modal('show')
 })
 
-$('form').bootstrapValidator({
+$('#first-form').bootstrapValidator({
   feedbackIcons: {
     valid: 'glyphicon glyphicon-ok',
     invalid: 'glyphicon glyphicon-remove',
@@ -310,16 +318,16 @@ $('form').bootstrapValidator({
   }
 })
 
-$('form').on('success.form.bv', function(e) {
+$('#first-form').on('success.form.bv', function (e) {
   e.preventDefault()
   $.ajax({
-    type:'post',
-    url : '/category/addTopCategory',
-    data:{
+    type: 'post',
+    url: '/category/addTopCategory',
+    data: {
       categoryName: $('[name=categoryName]').val()
     },
     success: function (info) {
-      if(info.success){
+      if (info.success) {
         first()
         $('.addmodal').modal('hide')
 
@@ -332,15 +340,118 @@ $('form').on('success.form.bv', function(e) {
 
 var second_page = 1
 var second_pagesize = 5
-$.ajax({
-  type:'get',
-  url:'/category/querySecondCategoryPaging',
-  data:{
-    page : second_page,
-    pageSize:second_pagesize
+function second() {
+  $.ajax({
+    type: 'get',
+    url: '/category/querySecondCategoryPaging',
+    data: {
+      page: second_page,
+      pageSize: second_pagesize
+    },
+    success: function (info) {
+      $('.second-tb').html(template('tpl2', info))
+      $('#second-page').bootstrapPaginator({
+        bootstrapMajorVersion: 3,
+        // 当前页
+        currentPage: second_page,
+        // 总页数
+        totalPages: Math.ceil(info.total / info.size),
+        // 当按钮被点击的时候触发
+        onPageClicked: function (a, b, c, d) {
+          second_page = d
+          // 重新渲染
+          second()
+        }
+      });
+    }
+  })
+}
+second()
+
+$('.scadd-btn').click(function () {
+  $('.scaddmodal').modal('show')
+  $('.btn-yes').prop('disabled',false)
+  $.ajax({
+    type : 'get',
+    url: '/category/queryTopCategoryPaging',
+    data:{
+      page : 1,
+      pageSize : 1000
+    },
+    success : function (info) {
+      $('.dropdown-menu').html(template('tpl3',info))
+    }
+  })
+})
+
+$('.dropdown-menu').on('click','a',function () {
+  $('.dropdown-toggle').text($(this).text())
+  $('[name="categoryId"]').val($(this).data('id'))
+  $('#second-form').data("bootstrapValidator").updateStatus("categoryId", "VALID")
+})
+
+$('#fileupload').fileupload({
+   done : function (a,b) {
+    var picaddr = b.result.picAddr
+    $('.second-img').attr('src',picaddr)
+    $('[name="brandLogo"]').val(picaddr)
+    $('#second-form').data("bootstrapValidator").updateStatus("brandLogo", "VALID")
+
+   }
+})
+
+$('#second-form').bootstrapValidator({
+  excluded:[],
+
+  feedbackIcons:{
+    vaild:'glyphicon glyphicon-ok',
+    invalid:'glyphicon glyphicon-remove',
+    validating:'glyphicon glyphicon-refresh'
   },
-  success : function (info) {
-    console.log(info)
-    $('.second-tb').html(template('tpl2',info))
+  fields:{
+    brandName:{
+      validators:{
+        notEmpty:{
+          message:'请输入二级分类名称'
+        }
+      }
+    },
+    categoryId:{
+      validators:{
+        notEmpty: {
+          message:'请选择一级分类'
+        }
+      }
+    },
+    brandLogo:{
+      validators:{
+        notEmpty:{
+          message:'请上传图片'
+        }
+      }
+    }
   }
 })
+console.log($('#second-form'))
+$('#second-form').on('success.form.bv',function( e ) {
+  console.log('hhh')
+   e.preventDefault()
+   $('.scaddmodal').modal('hide')
+
+   $.ajax({
+     type : 'post',
+     url: "/category/addSecondCategory",
+     data:$('#second-form').serialize(),
+     success : function (info){
+       console.log(info)
+       $('.scaddmodal').modal('hide')
+       second_page = 1
+       second()
+       $('#second-form').data("bootstrapValidator").resetForm( true );
+       $('.second-btn').text('请选择一级分类')
+       $('.second-img').attr('src','./images/none.png')
+     }
+   })
+})
+
+ 
