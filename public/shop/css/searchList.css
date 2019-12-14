@@ -1,0 +1,54 @@
+.nav-top {
+  position: relative;
+  margin-top: 10px;
+}
+.nav-top input {
+  height: 33px;
+  font-size: 12px;
+  border: 1px solid #007AFF;
+  border-radius: 5px;
+}
+.nav-top button {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+.nav-top ul {
+  display: flex;
+  text-align: center;
+  font-size: 14px;
+  background-color: #EEEEEE;
+}
+.nav-top ul li {
+  flex: 1;
+}
+.nav-top ul li.now {
+  color: orange;
+}
+.content {
+  position: relative;
+  height: 100%;
+}
+.content ul li {
+  width: 48%;
+  float: left;
+  margin-left: 10px;
+  margin-top: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+.content ul li img {
+  width: 130px;
+}
+.content ul li button {
+  margin-bottom: 10px;
+}
+.content ul li .price {
+  color: red;
+  font-size: 14px;
+}
+.content ul li .oldprice {
+  color: #8f8f94;
+  font-size: 12px;
+  text-decoration: line-through;
+}

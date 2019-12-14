@@ -28,8 +28,6 @@ body {
   height: 45px;
   text-align: center;
   display: block;
-}
-.header a .fa-home {
   color: #fff;
   line-height: 45px;
 }

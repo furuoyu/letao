@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./lib/lib/mui/css/mui.min.css" />
+    <link rel="stylesheet" href="./lib/lib/mui/fonts/mui.ttf" />
+    <link rel="stylesheet" href="./lib/lib/fa/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/searchList.css" />
+  </head>
+
+  <body>
+    <div class="header">
+      <a href="index.html" class="mui">
+        <span class="fa fa-chevron-left"> </span>
+      </a>
+      <h3>搜索中心</h3>
+    </div>
+    <div class="nav-top">
+      <input type="text" placeholder="请输入关键字" />
+      <button class="mui-btn mui-btn-primary btn-search">搜索</button>
+      <ul>
+        <li><i class="fa fa-angle-down"></i> 上架时间</li>
+        <li data-name="price"><i class="fa fa-angle-down"></i> 价格</li>
+        <li data-name="num"><i class="fa fa-angle-down"></i> 库存</li>
+        <li><i class="fa fa-angle-down"></i> 折扣</li>
+      </ul>
+    </div>
+    <div class="content">
+      <div class="mui-scroll-wrapper">
+        <div class="mui-scroll">
+          <ul>
+            <!-- tpl -->
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <ul>
+        <li>
+          <a href="index.html" class="">
+            <span class="fa fa-home "></span>
+            <p>首页</p>
+          </a>
+        </li>
+        <li>
+          <a href="category.html">
+            <span class="fa fa-bars"></span>
+            <p>分类页</p>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="fa fa-shopping-cart"></span>
+            <p>购物页</p>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="fa fa-user"></span>
+            <p>个人中心</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <script type="text/html" id="tpl">
+      {{each data v i}}
+      <li data-id="{{v.id}}">
+       <img src="{{v.pic[0].picAddr}}" alt="">
+       <p class="mui-ellipsis-2">{{v.proName}}</p>
+       <span class="price">￥{{v.price}}</span> <span class="oldprice">￥{{v.oldPrice}}</span><br>
+       <button class="mui-btn mui-btn-primary">立即购买</button>
+        </li>
+        {{/each}}
+    </script>
+    <script src="./lib/lib/jquery/jquery.min.js"></script>
+    <script src="./lib/lib/mui/js/mui.js"></script>
+    <script src="./lib/lib/artTemplate/template-web.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/searchList.js"></script>
+  </body>
+</html>

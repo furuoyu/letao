@@ -1,0 +1,57 @@
+.nav-top{
+  position: relative;
+  margin-top:10px;
+  input{
+    height: 33px;
+    font-size: 12px;
+    border: 1px solid #007AFF;
+    border-radius: 5px;
+  }
+  button{
+    position: absolute;
+    top:0px;
+    right:0px;
+  }
+  ul{
+    display: flex;
+    text-align: center;
+    font-size: 14px;
+    background-color: #EEEEEE;
+    li {
+      flex: 1;
+      &.now{
+        color:orange;
+      }
+    }
+  }
+}
+
+.content {
+  position: relative;
+  height: 100%;
+  ul {
+    li {
+      width: 48%;
+      float: left;
+      margin-left: 10px;
+      margin-top:10px;
+      text-align: center;
+      border:1px solid #ccc;
+      img {
+        width: 130px;
+      }
+      button{
+        margin-bottom:10px;
+      }
+      .price {
+        color:red;
+        font-size: 14px;
+      }
+      .oldprice{
+        color: #8f8f94;
+        font-size: 12px;
+        text-decoration: line-through;
+      }
+    }
+  }
+}
